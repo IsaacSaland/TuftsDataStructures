@@ -1,0 +1,101 @@
+Title: CharLinkedList
+
+Date: 2/6/2024
+
+Purpose: to create a doubly-linked list of chars
+         This file contains all necessary information on this project,
+
+Acknowledgements:
+    Martin Allen
+
+Files Provided:
+    CharLinkedList.cpp
+        implementation of CharLinkedList
+    CharLinkedList.h
+        Header file for CharLinkedList
+    unit_tests.h
+        All testing done to CharLinkedList (including edge cases)
+    Makefile
+        Compiles and runs the unit tests through the terminal
+    timer_main.cpp
+        Runs various tests and displays the times each test took
+    README
+        provide important information regarding this homework
+
+Compiling:
+    This file can be compiled by running use -q comp15 in the terminal,
+    navigating to the hw02 folder, then running unit_test to test it
+
+Algorithms/Data Structures Used:
+    ADT used: (doubly) Linked List
+
+    One data structure used was the Node struct, which included a pointer to
+    both the previous and next node in the linked list, as well as the
+    information of the node (the char).
+
+    One algorithm used was recursively deleting each node, where the next node
+    was repeatedly passed with the previous being deleted. Similar recursive
+    methods were used for other functions (such as elementAt).
+
+Advantages/Disadvantages:
+    One advantage of linked lists is within memory management, where each
+    node is independent of any others aside from its linking pointers, causing
+    them to use only the necessary heap memory.
+    One disadvantage of linked lists is slow traversal and information access.
+    each node has to be navigated in order to find an element at a given index,
+    so the time that accessing certain elements takes can be long.
+
+Testing:
+    Each method of CharLinkedList was tested with its own unit test, given
+    an extra test for any extra edge cases or purposeful failures. Upon seeing
+    errors, cout statements were used (then deleted after serving their
+    purposes) before editing the code
+
+Hours Worked: 9
+
+timer: (method ----- time in nanoseconds)
+    pushAtFront 100 times - 2926
+    pushAtBack 100 times - 1838
+    insertAt middle 100 times - 2114819
+    popFromFront 100 times - 3081
+    popFromBack 100 times - 2725
+    removeAt middle 100 times - 2402059
+    first() 100 times - 352
+    last() 100 times - 368
+    elementAt() middle 100 times - 5488826
+
+    any front/back methods were faster than middle methods because
+    they don't have to navigate as far. With a front and back pointer,
+    the insertAt removeAt or elementAt functions are already where they
+    need to be (this counts for pop push first and last as well)
+
+    Comparing these results to hw01, front and back times are equal rather
+    than having front methods take lots of time. Each push/pop takes longer,
+    but accessing first and last is faster. Lastly, middle functions are
+    significantly slower (but not by a factor of 10). This is likely because
+    changing an arraylist means changing the position in memory of every
+    part, while a linkedlist only requires adding a new node.
+    However, accessing middle elements takes longer because it isn't as simple
+    as finding a position in memory, requiring iterations through the list to
+    find the correct node
+
+Questions:
+    Which functions in the interface were easier to implement for
+    linked lists compared to array lists? Why?
+        One function that was easier to implement was adding new nodes.
+        in an arraylist, it requires moving the position of every variable and
+        expanding the memory allocated, if applicable. In a linkedlist, all
+        that is required is to allocate the required heap memory for a new
+        node, then attaching it to the list with pointers in other nodes.
+    Which functions in the interface were harder to implement
+    for linked lists compared to array lists? Why?
+        One function that was harder to implement was the elementAt function,
+        which is as simple as looking for a place of memory in an arraylist.
+        As for linked lists, it requires iterating through the list until the
+        desired index is reached.
+    If a client had an existing program that uses CharArrayLists,
+    what changes would they have
+    to make to their code to switch to CharLinkedLists?
+        They would have to create a Node struct, then have pointers to the
+        front (and back) of the list. After, they would have to add each
+        element into a linked list that is node-based.
