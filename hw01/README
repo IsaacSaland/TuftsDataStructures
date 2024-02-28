@@ -1,0 +1,73 @@
+Isaac Saland
+1/30/2024
+Data Structures
+CharArrayList
+
+Purpose:
+    Implement CharArrayList and the varios functions associated with them in
+    order to better utilize pointers and memory allocation when accessing
+    and manipulating elements.
+
+Running:
+    Type use -q comp15, followed by the unit_test command
+
+Acknowledgements:
+    Professor Martin Allen
+
+Known Bugs:
+    numItems is incorrect if size is incorrectly inputted to the constructor,
+    which causes methods to not function properly.
+
+Data Structures Used:
+    The main data structure used were Arrays
+    The main ADT used was char arraylist, which was used because it provides
+    the utility of Arrays while being able to be expanded and changed.
+    One disadvantage of using ArrayLists is their bad memory efficiency.
+
+Algorithms:
+    Using loops, the ArrayList was iterated through in order to delete/add
+    new chars. Checks were implemented so that memory isn't overwritten
+    or deleted twice, avoiding nullptr when possible.
+
+Testing:
+    Aside from the provided unit tests, more tests were
+    created with the purpose
+    of testing individual functions of CharArrayList.
+    When errors came up, cout
+    statements and function tweaking was used. After going back and
+    editing code,
+    all unit tests were eventually passed. Being sure to take note
+    and test edge
+    cases was important for the success of the project.
+
+Hours Worked: 7 (?)
+
+Timer:
+    The results printed match my expectations. Some took millions of ns, while
+    others took only hundreds. With a CharArrayList of 1000000 members,
+    Any rewriting/moving functions will be O(n), which takes increasingly
+    longer with increasing n
+
+    INSERT: (nanoseconds)
+        pushAtFront 3000476
+        pushAtBack 916
+        insertAt (middle) 1514740
+    REMOVAL:
+        popFromFront 3344870
+        popFromBack 1137
+        removeAt (middle) 1748290
+    ACCESS:
+        first 542
+        last 606
+        elementAt (middle) 515
+
+    Notably, the methods that start from the front or affect
+    the front take much
+    longer because the code is written that anything done at any point affects
+    everything after it (and it will have to be moved).
+    The middle functions take
+    the middle amount of time because they only need to
+    move half of the elements.
+    The back functions don't need to move any elements, so they take the least
+    time. One exception to this is the
+    elementAt function, which took the least.
