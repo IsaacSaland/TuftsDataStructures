@@ -1,0 +1,68 @@
+/**********************************************************
+* Project 1: Metro Simulator
+* CS 15
+* README
+* Isaac Saland
+*********************************************************/
+
+Compile/run:
+     - Compile using
+            make MetroSim
+     - run executable with
+            ./MetroSim stationsFile passFile [commands]
+
+
+Program Purpose:
+    Act as a train management system where passengers can get on and off the
+    train and stations; accept various commands relating to management
+    of passengers and movement of the train
+
+Acknowledgements:
+    Professor Martin Allen
+
+Files: 
+
+main.cpp:
+     runs the simulation of MetroSim; handles user input/output
+
+MetroSim.cpp:
+     Implementation of MetroSim class.  Main
+     functionality of the Metro Simulation; able to
+     move trains and deal with passengers going on/off the train.
+
+MetroSim.h:
+     Interface of MetroSim class.
+
+stations.txt:
+     an example file containing a list of stations.
+
+test_commands.txt:
+     sample list of commands that you could give to the simulator
+
+the_metroSim:
+     reference implementation of metrosim 
+
+
+Note:  the program should handle all cases.
+
+Data Structures:
+    The main data structure used was the vector. Each index of the train vector
+    acted as each train car, while each index of the stations vector contains
+    each station
+
+Testing:
+
+    Aside from the provided tests, I used the unit_test file to test the
+    Passenger and PassengerQueue classes. After this, a series of files
+    of varying sizes of commands/stations were used to test the MetroSim.
+    Bugs encountered include: passengers not getting on the train at the
+    correct station, passengers not getting off the train at the correct
+    station, etc. These bugs were overcome by moving around method calls within
+    the program and then diffing the output, as well as manual testing with
+    user input. Cout statements were also used for debugging.
+
+Part that you found most difficult:
+    The most difficult part of the MetroSim assignment was managing
+    input from both files and cin
+
+Time Spent: 15 hours
