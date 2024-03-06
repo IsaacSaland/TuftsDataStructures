@@ -1,0 +1,15 @@
+mod
+drop
+-
+*
+command
+file
+if
+exec
+{ 2 1 + }
+if
+#
+#f
+#t
+/
+print

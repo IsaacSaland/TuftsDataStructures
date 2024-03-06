@@ -1,0 +1,89 @@
+Name: Isaac Saland
+utln: isalan01
+
+Answer the questions below, and submit your answers under the assignment
+"CalcYouLater Design Checkoff" on Gradescope. You must sign up for a design
+checkoff slot with a TA to discuss your provided answers (see spec for link).
+
+Unless otherwise specified, your answers below should be *brief*: no more
+than three sentences/question.
+
+        
+1. Are you comfortable using try-catch? 
+    I am comfortable using try-catch, and any issues that arise can be
+    solved by using online resources and documentation.
+
+Lets say my program consists of: 
+
+funcA() {
+     throw runtime_error() 
+}
+
+funcB() {
+    workA()
+    funcA()
+    workB()
+}
+
+funcC() {
+    try {
+         funcB()
+    }
+    catch(runtime_error) {
+       workC()
+    }
+}
+
+I call funcC(). Which of the "work" functions will be called, and in what order?
+
+Answer: workA would be called, then workC would be called.
+
+2. What happens if I try to perform "+" between a string and an integer? Which
+   elements are popped off the stack and remain popped off?
+
+Answer: using + for a string and an int causes an error. After this, the two
+        are discarded
+
+3. What does `exec` do? What does `file` do? What does `if` do?
+
+Answer: exec takes the topmost element of the stack (an rstring) and turns
+        it into commands, printing an error if needed. file pops the top
+        element off the stack (an rstring) and uses the filename as input,
+        printing an error if needed. if pops an rstring off the stack and
+        executes it if false, then pops another and executes if true, then pops
+        a boolean to test, while printing an error if needed.
+
+4. How will your program interact with the user? What should happen if your
+   program encounters an error during this interaction?
+
+Answer: runtime_error and cerr will be used when an error occurs or the program
+        ends. cin and file input will handle input
+
+5. What classes will you need in your program? What are the important functions
+   and member variables that those classes will comprise? How will the classes
+   interact (i.e., which classes will be clients of others)?
+   What data structures will you use? It is okay if you use more than three
+   sentences here. Feel free to provide your answer in list form.
+
+Answer: This project will revolve around the DatumStack class being used in
+        the RPNCalculator class. The stack will be used by putting the data
+        in, then popping until an operation is reached, then applying the
+        operation to the previous two datum and repeating
+
+6. There are three sources of input for processing commands: cin, files, and
+   rstrings. What C++ data type can allow you to write the same code that
+   handles commands from all three of these sources?
+
+Answer: I can put all input into an istringstream from cin, files, etc.
+
+7. How do you plan to test your program? What evidence of testing do
+   you plan to submit? 
+
+Answer: I can submit my unit_tests file and any files I make as input
+
+8. What is your timeline for completing this project? What would you like to
+   have completed, and by which dates?        
+
+Answer: I have already completed the DatumStack and only need to debug parser,
+        so I plan to have the project finished by the weekend so I can debug
+        and go to office hours before the deadline if needed

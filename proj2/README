@@ -1,0 +1,61 @@
+Project 2: CalcYouLater
+CS15
+README
+Isaac Saland
+
+Acknowledgements: Professor Martin Allen
+
+Files Provided:
+    RPNCalc.h:
+        interface for the RPNCalc class that contains all function and
+        variable declarations
+    RPNCalc.cpp:
+        implementation of the RPNCalc class; contains all methods and vars
+        necessary for running the simulation, as well as the run method itself
+    DatumStack.h:
+        interface for the DatumStack class that contains all function and
+        variable declarations
+    DatumStack.cpp:
+        implementation of the DatumStack class; uses the stack ADT by
+        storing information in a vector and only allowing access to the top
+    unit_tests:
+        various tests for many of the functions of this project
+    Makefile:
+        used to build the run file when running the "make CalcYouLater" command
+    main.cpp:
+        used to run the simulation
+
+Running:
+    type "make CalcYouLater" to compile, followed by ./CalcYouLater to run
+
+Architectural Overview:
+    All input is handled through the RPNCalc class. Within the class, there is
+    a DatumStack that holds the commands. Most commands that run have their own
+    methods attached to them, which are called upon the correct keyword being
+    inputted. There are also many places where quitting is possible, which
+    serves to make sure quit always runs whenever the program ends (so it
+    prints the correct thing).
+
+Data Structures/Algorithms Used:
+    The main ADT used was the stack, which was implemented in the DatumStack
+    class. Each Datum (rstring, bool, int) is pushed into the stack before
+    and is popped from command usage. When given an rstring, the program
+    converts it into a series of commands before running that. A stack was used
+    because it is best for handling input in this case. By using a stack, it is
+    possible to execute the most recent data pushed first before dealing with
+    older data, meaning that something such as 2 2 1 + + can turn to 2 3 +
+    before turning into just 5. If any other ADT was used, behavior such as
+    this would be much more difficult to implement.
+    One interesting aspect of the program is the use of try catch statements,
+    which are used as a catch-all for errors to print to cerr instead of
+    stopping the whole program.
+
+Testing:
+    Aside from the provided test files, unit_test was used for testing
+    many functions of the project. The provided testing files were used to test.
+    A few other test files were created, but much testing was done
+    through manual running of the program and comparison to theCalcYouLater's
+    output. Whenever bugs were encountered, cout statements were used to find
+    where mistakes happened for the majority of the cases encountered.
+
+Time Spent: 14 hours

@@ -1,0 +1,17 @@
+#t
+print
+drop
+#f
+print
+drop
+1
+print
+0
+print
+mod
+print
+3
+2
++
+print
+quit

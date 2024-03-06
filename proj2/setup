@@ -1,0 +1,77 @@
+#!/bin/bash
+
+##
+## Changelog
+##		7/6/2023 - slamel01 - QOL fixes
+##			- Remove setup_links
+##			- Added better comments
+## 			- Always prompts "ok to put material here"
+##			- Only times files are copied are when local and source differ (student
+##				must confirm overwrite)
+##			- Local symlink files are deleted before symlinking again to avoid ln -s error
+##		8/27/2023 - slamel01 - update HW with assignments/ subfolder renaming
+## 
+
+## Change this for new HWs -- rest of code is boiler plate
+HW=proj_calcyoulater
+
+## Directory where we copy from
+SOURCEDIR=/comp/15/files/$HW
+LINKDIR=$SOURCEDIR/.DONT_COPY
+
+## Make sure student is ok putting stuff in whatever directory they are in.
+HERE=$(pwd)
+printf "About to put $HW material into $HERE.\n"
+printf "Press y to confirm:  "
+read RESPONSE
+case "$RESPONSE" in
+		y*|Y*)                                    ;;
+		*)	      echo "Setup cancelled."
+				exit 1                           ;;
+esac
+
+## Iterates over nonhidden files in copy directory
+for file in $SOURCEDIR/*
+do
+	# Name of local file (remember cwd is student's cwd)
+	LOCALFILE=$(basename $file)
+
+	# Switch case on local filename
+    case "$LOCALFILE" in
+	*~) # Skip any backup files (end in ~)                    
+		;;
+	setup) # Skip this file                 
+		;; 
+	*) # For any other file
+
+		# Check if a local copy exists
+		if [ -f "$LOCALFILE" ]; then
+
+			# -q is faster diff, don't want to show students the output
+			diff -q $LOCALFILE $file &> /dev/null
+
+			# If local copy differs from source (nonzero diff return code)
+			if [ $? -ne 0 ]; then
+
+				# Tell them they modified it and confirm they'd like to overwrite
+				# e.g. we provide a Makefile and student modifies it
+				printf "You modified $LOCALFILE, type y to confirm overwrite.\n"
+				cp -i $file ./
+				
+			fi # Otherwise, do nothing they have the original
+		else 
+			# Missing a copy, add it
+			cp $file ./
+		fi ;; 
+    esac
+done
+
+## For each file to be symlinked
+for file in $LINKDIR/*
+do
+	# Delete the local copy of the symlink if one exists (-f to ignore does not exist)
+	rm -f $(basename $file)
+
+	# Make the symlink
+    ln -s $file ./
+done
